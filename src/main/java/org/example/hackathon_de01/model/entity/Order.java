@@ -38,7 +38,4 @@ public class Order {
     // Ghi chú nguồn gốc đơn hàng, ví dụ: "Đặt qua AI Chatbot"
     @Column(length = 255)
     private String note;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderItem> items;
 }
