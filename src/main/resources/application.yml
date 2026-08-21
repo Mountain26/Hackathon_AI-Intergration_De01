@@ -1,35 +1,29 @@
 spring:
-  profiles:
-    active: dev
   application:
-    name: Hackathon_De01
+    name: Hackathon De 01
   ai:
     openai:
-      base-url: https://openrouter.ai/api/v1
-      api-key: ${openai.api-key}
+      api-key: ${OPENAI_API_KEY}
+      base-url: ${OPENAI_BASE_URL}
       chat:
-        model: anthropic/claude-3-haiku
+        model: ${OPENAI_MODEL}
+        temperature: 0.3
       embedding:
         model: text-embedding-3-small
     vectorstore:
       pgvector:
-        index-type: HNSW
-        distance-type: COSINE_DISTANCE
-        dimensions: 1536
         initialize-schema: true
+        dimensions: 1536
+        index-type: hnsw
+        distance-type: cosine_distance
   datasource:
-    url: jdbc:postgresql://${database.host}:5432/postgres
-    username: ${database.username}
-    password: ${database.password}
-  #  sql:
-  #    init:
-  #      mode: always
-
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres
+    username: ${USERNAME_SUPABASE}
+    password: ${PASSWORD_SUPABASE}
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect

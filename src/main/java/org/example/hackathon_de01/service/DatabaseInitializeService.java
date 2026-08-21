@@ -25,7 +25,6 @@ public class DatabaseInitializeService {
         }
 
         if (productRepository.count() == 0) {
-            // Lấy danh sách category từ DB (id có thể là 1, 2, 3, 4 nếu db mới tinh)
             java.util.List<Category> cats = categoryRepository.findAll();
             Category c1 = cats.stream().filter(c -> c.getName().equals("Điện thoại")).findFirst().orElse(null);
             Category c2 = cats.stream().filter(c -> c.getName().equals("Laptop")).findFirst().orElse(null);

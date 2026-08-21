@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-
+// OrderItem
 @Entity
 @Table(name = "order_items")
 @Data

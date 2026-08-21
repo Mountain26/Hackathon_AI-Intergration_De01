@@ -15,18 +15,20 @@ public class ChatConfig {
     public ChatMemory chatMemory() {
         return MessageWindowChatMemory.builder()
                 .chatMemoryRepository(new InMemoryChatMemoryRepository())
-                .maxMessages(10)
+                .maxMessages(12)
                 .build();
     }
 
     @Bean
-    public ChatClient chatClient(ChatClient.Builder chatClientBuilder) {
-        return chatClientBuilder
-                .defaultSystem("Bạn là trợ lý AI chat bot..." )
-                .defaultAdvisors(
-                        MessageChatMemoryAdvisor.builder(chatMemory()).build()
-                )
-                .defaultTools()
+    public ChatClient chatClient(ChatClient.Builder builder, ChatMemory chatMemory) {
+        return builder
+                .defaultSystem("""
+                        Bạn là trợ lý bán hàng cho cửa hàng.
+                        Nếu câu hỏi liên quan sản phẩm, gọi tool phù hợp để trả về thông tin thực tế.
+                        Nếu câu hỏi về cửa hàng, gọi tool getStoreInfo.
+                        Nếu người dùng yêu cầu đặt hàng, gọi tool createOrder và chỉ trả về kết quả đơn hàng.
+                        """)
+                .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                 .build();
     }
 }

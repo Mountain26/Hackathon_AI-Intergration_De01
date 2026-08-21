@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-
+// Product
 @Entity
 @Table(name = "products")
 @Data

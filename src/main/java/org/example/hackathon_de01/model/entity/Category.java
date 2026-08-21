@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
+// Category
 @Entity
 @Table(name = "categories")
 @Data
